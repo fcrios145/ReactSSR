@@ -17,8 +17,8 @@ services:
 
   app:
     environment:
-      - DATABASE_NAME=fransonal_db
-      - DATABASE_USER=fransonal_user
+      - DATABASE_NAME=api_db
+      - DATABASE_USER=api_user
       - DATABASE_PASSWORD=123456
       - DATABASE_HOST=db
       - DATABASE_PORT=5432
@@ -30,5 +30,18 @@ services:
       - ./api/api_project:/usr/src/app
     command: >
       sh -c "python manage.py runserver 0.0.0.0:8000"
+
+  db:
+    image: postgres:11.2-alpine
+    ports:
+      - "5433:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data/
+    environment:
+      - POSTGRES_USER=api_user
+      - POSTGRES_PASSWORD=123456
+      - POSTGRES_DB=api_db
+
     
-      
+volumes:
+  postgres_data:
