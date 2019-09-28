@@ -4,13 +4,13 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "webpack": "webpack -w & nodemon server.js",
+    "webpack": "webpack -w --mode=development & nodemon server.js",
+    "w": "webpack",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "babel": {
     "presets": [
-      "env",
-      "react"
+      "@babel/preset-react"
     ],
     "plugins": [
       "transform-object-rest-spread"
@@ -19,13 +19,14 @@
   "author": "Francisco Rios",
   "license": "ISC",
   "devDependencies": {
-    "babel-core": "^6.26.3",
+    "@babel/core": "^7.6.2",
+    "@babel/preset-react": "^7.0.0",
     "babel-loader": "^8.0.6",
     "babel-plugin-transform-object-rest-spread": "^6.26.0",
     "babel-preset-env": "^1.7.0",
-    "babel-preset-react": "^6.24.1",
     "nodemon": "^1.19.2",
     "webpack": "^4.41.0",
+    "webpack-cli": "^3.3.9",
     "webpack-node-externals": "^1.7.2"
   },
   "dependencies": {
