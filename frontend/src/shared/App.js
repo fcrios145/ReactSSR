@@ -1,24 +1,26 @@
 import React, { Component } from 'react'
+import routes from './routes'
+import { Route, Link, Redirect, Switch } from 'react-router-dom'
+import Navbar from './Navbar'
+import NoMatch from './NoMatch'
 
 class App extends Component {
-    constructor(props) {
-        super(props)
-        this.state = {
-            contador: 1
-        }
-    }
-    sumar() {
-        this.setState({contador: this.state.contador + 1})
-    }
-    render(){
-        return(
-            <div>
-                <h1>Hola mundo</h1>
-                <span>{this.state.contador}</span>
-                <button onClick={() => this.sumar()}>Contar</button>
-            </div>
-        )
-    }
+  render() {
+    return (
+      <div>
+        <Navbar />
+
+        <Switch>
+          {routes.map(({ path, exact, component: Component, ...rest }) => (
+            <Route key={path} path={path} exact={exact} render={(props) => (
+              <Component {...props} {...rest} />
+            )} />
+          ))}
+          <Route render={(props) => <NoMatch {...props} /> } />
+        </Switch>
+      </div>
+    )
+  }
 }
 
 export default App
